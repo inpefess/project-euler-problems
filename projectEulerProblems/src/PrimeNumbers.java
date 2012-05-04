@@ -1,10 +1,12 @@
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
 
 public class PrimeNumbers {
 	public static final String fileName = "PrimeNumbers.txt";
-	public static final long maxNumber = 1000000; 
+	public static final int maxNumber = 100000; 
 
 	public static Boolean isPrime (long n) {
 		for (long i = 2; i < n / 2; i ++) {
@@ -17,14 +19,14 @@ public class PrimeNumbers {
 	
 	public static void generatePrimes() {
 		try{
-			BufferedWriter out = new BufferedWriter(new FileWriter(fileName));
-			out.write(String.valueOf(2));
-			for (long i = 3; i < maxNumber; i += 8) {
-				if (isPrime (i)) out.write(String.valueOf(i));
-				if (isPrime (i + 2)) out.write(String.valueOf(i + 2));
-				if (isPrime (i + 4)) out.write(String.valueOf(i + 4));
+			BufferedWriter fout = new BufferedWriter(new FileWriter(fileName));
+			ArrayList<Long> primes = new ArrayList<Long>(maxNumber);
+			generatePrimes(primes);
+			for (int i = 0; i < primes.size(); i ++) {
+				fout.write(String.valueOf(primes.get(i)));
+				fout.write(System.getProperty("line.separator"));
 			}
-			out.close();
+			fout.close();
 		}catch (Exception e){
 			//Catch exception if any
 			System.err.println("Error: " + e.getMessage());
@@ -32,20 +34,37 @@ public class PrimeNumbers {
 	}
 	
 	public static void getPrimes(ArrayList<Long> primes, long nextNum) {
-		long remainder = nextNum;
-		for (int i = 0; i < primes.size() || remainder > 1; i ++) {
-			while (remainder % primes.get(i) == 0) remainder /= primes.get(i);
+		Boolean isPrime = true;
+		for (int i = 0; i < primes.size() && isPrime; i ++) {
+			isPrime = nextNum % primes.get(i) != 0;
 		}
-		if (remainder > 1) primes.add(nextNum);
+		if (isPrime) primes.add(nextNum);
 	}
 	
-	public static void generatePrimes(ArrayList<Long> primes, long maxNum) {
+	public static void generatePrimes(ArrayList<Long> primes) {
 		primes.clear();
 		getPrimes(primes, 2);
-		for (long i = 3; i < maxNum; i += 8) {
+		int percent = 0;
+		for (int i = 3; primes.size() < maxNumber; i += 2) {
+			if ((primes.size() * 100) / maxNumber > percent) {
+				percent ++;
+				System.out.println(percent);
+				System.out.println(i);
+			}
 			getPrimes(primes, i);
-			getPrimes(primes, i + 2);
-			getPrimes(primes, i + 4);
+		}
+	}
+	
+	public static void loadPrimes(ArrayList<Long> primes) {
+		try{
+			BufferedReader fin = new BufferedReader(new FileReader(fileName));
+			for (int i = 0; i < maxNumber; i ++) {
+				primes.add(Long.valueOf(fin.readLine()));
+			}
+			fin.close();
+		}catch (Exception e){
+			//Catch exception if any
+			System.err.println("Error: " + e.getMessage());
 		}
 	}
 }
