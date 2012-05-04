@@ -3,13 +3,13 @@ import java.io.FileReader;
 
 public class Problem81 {
 	
-	private static void readMatrix (long[][] matrix, String filename, int m, int n) {
+	private static void readMatrix (int[][] matrix, String filename, int m, int n) {
 		try{
 			BufferedReader fin = new BufferedReader(new FileReader(filename));
 			for (int i = 0; i < m; i ++) {
 				String[] line = fin.readLine().split(",");
 				for (int j = 0; j < n; j ++) {
-					matrix[i][j] = Long.valueOf(line[j]);
+					matrix[i][j] = Integer.valueOf(line[j]);
 				}
 			}
 			fin.close();
@@ -19,12 +19,12 @@ public class Problem81 {
 		}		
 	}
 
-	public static long solve () {
+	public static int solve () {
 		String filename = "matrix.txt";
 		int n = 80;
-		long[][] matrix = new long[n][n];
+		int[][] matrix = new int[n][n];
 		readMatrix(matrix, filename, n, n);
-		long[][] mmatrix = new long[n][n];
+		int[][] mmatrix = new int[n][n];
 		mmatrix[0][0] = matrix[0][0];
 		for (int i = 1; i < n; i ++) {
 			mmatrix[i][0] = mmatrix[i - 1][0] + matrix[i][0];

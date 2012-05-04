@@ -5,11 +5,9 @@ import java.io.FileWriter;
 import java.util.ArrayList;
 
 public class PrimeNumbers {
-	public static final String fileName = "PrimeNumbers.txt";
-	public static final int maxNumber = 100000; 
 
-	public static Boolean isPrime (long n) {
-		for (long i = 2; i < n / 2; i ++) {
+	public static Boolean isPrime (int n) {
+		for (int i = 2; i < n; i ++) {
 			if (n % i == 0) {
 				return false;
 			}
@@ -17,11 +15,11 @@ public class PrimeNumbers {
 		return true;
 	}
 	
-	public static void generatePrimes() {
+	public static void writePrimes(int maxNumber, String fileName) {
 		try{
 			BufferedWriter fout = new BufferedWriter(new FileWriter(fileName));
-			ArrayList<Long> primes = new ArrayList<Long>(maxNumber);
-			generatePrimes(primes);
+			ArrayList<Integer> primes = new ArrayList<Integer>(maxNumber);
+			generatePrimes(primes, maxNumber);
 			for (int i = 0; i < primes.size(); i ++) {
 				fout.write(String.valueOf(primes.get(i)));
 				fout.write(System.getProperty("line.separator"));
@@ -33,33 +31,16 @@ public class PrimeNumbers {
 		}
 	}
 	
-	public static void getPrimes(ArrayList<Long> primes, long nextNum) {
-		Boolean isPrime = true;
-		for (int i = 0; i < primes.size() && isPrime; i ++) {
-			isPrime = nextNum % primes.get(i) != 0;
-		}
-		if (isPrime) primes.add(nextNum);
-	}
-	
-	public static void generatePrimes(ArrayList<Long> primes) {
+	public static void generatePrimes(ArrayList<Integer> primes, int maxNumber) {
 		primes.clear();
-		getPrimes(primes, 2);
-		int percent = 0;
-		for (int i = 3; primes.size() < maxNumber; i += 2) {
-			if ((primes.size() * 100) / maxNumber > percent) {
-				percent ++;
-				System.out.println(percent);
-				System.out.println(i);
-			}
-			getPrimes(primes, i);
-		}
+		Boolean[] seed = new Boolean[1];
 	}
 	
-	public static void loadPrimes(ArrayList<Long> primes) {
+	public static void loadPrimes(ArrayList<Integer> primes, int maxNum, String fileName) {
 		try{
 			BufferedReader fin = new BufferedReader(new FileReader(fileName));
-			for (int i = 0; i < maxNumber; i ++) {
-				primes.add(Long.valueOf(fin.readLine()));
+			for (int i = 0; i < maxNum; i ++) {
+				primes.add(Integer.valueOf(fin.readLine()));
 			}
 			fin.close();
 		}catch (Exception e){

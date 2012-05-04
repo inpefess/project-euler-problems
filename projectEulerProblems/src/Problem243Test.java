@@ -7,7 +7,7 @@ public class Problem243Test {
 	@Test
 	public void testSolve() {
 		/* Table from Wikipedia */
-		long[] testPhi = {1, 2, 2, 4, 2, 6, 4, 6,
+		int[] testPhi = {1, 2, 2, 4, 2, 6, 4, 6,
 				4, 10, 4, 12, 6, 8, 8, 16, 6, 18,
 				8, 12, 10, 22, 8, 20, 12, 18, 12, 28, 
 				8, 30, 16, 20, 16, 24, 12, 36, 18, 24, 

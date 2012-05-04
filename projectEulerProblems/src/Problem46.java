@@ -1,10 +1,10 @@
 
 public class Problem46 {
-	public static long solve () {
-		for (long n = 3; n < PrimeNumbers.maxNumber; n += 2) {
+	public static int solve () {
+		for (int n = 3; n < 1000000; n += 2) {
 			if (!PrimeNumbers.isPrime(n)) {
-				long m = 1;
-				long k = 2 * m * m;
+				int m = 1;
+				int k = 2 * m * m;
 				while (n > k) {
 					if (PrimeNumbers.isPrime(n - k)) m = n;
 					m ++;
