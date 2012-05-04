@@ -18,8 +18,7 @@ public class Problem243Test {
 				32, 54, 40, 82, 24, 64, 42, 56, 40, 88, 
 				24, 72, 44, 60, 46, 72, 32, 96, 42, 60};
 
-		Problem243.maxNum = 100;
-		Problem243.solve();
+		Problem243.solve(100, 0, 1);
 		for (int i = 0; i < 98; i ++) {
 			if (Problem243.eulerPhi.get(i) != testPhi[i]) {
 				fail(String.valueOf(i));
