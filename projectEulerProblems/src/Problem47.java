@@ -1,13 +1,13 @@
 import java.util.ArrayList;
 
 public class Problem47 {
-	public static long solve () {
-		ArrayList<Long> primes = new ArrayList<Long>(1000000);
+	public static int solve () {
+		ArrayList<Integer> primes = new ArrayList<Integer>(1000000);
 		int maxNum = 4;
 		int[] seq = new int[maxNum];
 		int pos = 0;
-		for (long nextNum = 2; nextNum < 1000000; nextNum ++) {
-			long remainder = nextNum;
+		for (int nextNum = 2; nextNum < 1000000; nextNum ++) {
+			int remainder = nextNum;
 			seq[pos] = 0;
 			for (int i = 0; i < primes.size() && remainder > 1; i ++) {
 				if (remainder % primes.get(i) == 0) {
