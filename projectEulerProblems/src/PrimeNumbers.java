@@ -32,15 +32,29 @@ public class PrimeNumbers {
 	}
 	
 	public static void generatePrimes(ArrayList<Integer> primes, int maxNumber) {
+		boolean[] sieve = new boolean[maxNumber];
+		for (int i = 0; i < maxNumber; i ++) {
+			sieve[i] = true;
+		}		
+		for (int i = 2; i < maxNumber; i ++) {
+			if (sieve[i]) {
+				for (int j = 2 * i; j < maxNumber; j += i) {
+					sieve[j] = false;
+				}
+			}
+		}
 		primes.clear();
-		Boolean[] seed = new Boolean[1];
+		for (int i = 2; i < maxNumber; i ++) {
+			if (sieve[i]) primes.add(i);
+		}
 	}
 	
 	public static void loadPrimes(ArrayList<Integer> primes, int maxNum, String fileName) {
 		try{
 			BufferedReader fin = new BufferedReader(new FileReader(fileName));
 			for (int i = 0; i < maxNum; i ++) {
-				primes.add(Integer.valueOf(fin.readLine()));
+				String line = fin.readLine();
+				if (line != null) primes.add(Integer.valueOf(line));
 			}
 			fin.close();
 		}catch (Exception e){
