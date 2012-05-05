@@ -24,6 +24,7 @@ public class Problem243Test {
 				fail(String.valueOf(i));
 			}
 		}
+		if (Problem243.solve(100, 4, 10) != 12) fail("Example solution failed");
 	}
 
 }
