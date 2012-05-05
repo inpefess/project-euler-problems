@@ -1,36 +1,36 @@
-import java.util.ArrayList;
-
 public class Problem243 {
-	public static int maxNum = 1299709;
-	public static ArrayList<Integer> eulerPhi = new ArrayList<Integer>(1000000);
+	public static PrimeNumbers primes;
 	
-	public static int solve () {
-		ArrayList<Integer> primes = new ArrayList<Integer>(1000000);
-		PrimeNumbers.loadPrimes(primes, maxNum, "PrimeNumbers.txt");
-		eulerPhi.clear();
-		int r = 15499;
-		int d = 94744;
+	public static int totientFunction(int n) {
+		int phi = 1;
+		primes.goToFirstPrime();
+		int k;
+		int reminder = n;
+		for (k = primes.getNextPrime(); k != 0 && k <= reminder; k = primes.getNextPrime()) {
+			Boolean first = true;
+			while (reminder % k == 0) {
+				if (first) first = false;
+				else phi *= k;
+				reminder /= k;
+			}
+			if (!first) phi *= k - 1;
+		}
+		return phi;
+	}
+	
+	public static int solve (int maxNumber, int r, int d) {
+		primes = new PrimeNumbers();
+		primes.generatePrimes(maxNumber);
 		int percent = 0;
-		for (int nextNum = 2; nextNum < maxNum; nextNum ++) {
-			if ((nextNum * 100) / maxNum > percent) {
+		for (int nextNum = 6330000; nextNum < maxNumber; nextNum ++) {
+			if (((long) nextNum * 1000) / maxNumber > percent) {
 				percent ++;
-				System.out.println(percent);
+				System.out.println(nextNum);
 			}
-			int phi = 1;
-			int k = primes.get(0);
-			int reminder = nextNum;
-			for (int i = 0; i < primes.size() && k <= reminder; i ++) {
-				k = primes.get(i);
-				Boolean first = true;
-				while (reminder % k == 0) {
-					if (first) first = false;
-					else phi *= k;
-					reminder /= k;
-				}
-				if (!first) phi *= k - 1;
+			int phi = totientFunction(nextNum);
+			if 	((long) phi * (long) d < (long) r * (long) (nextNum - 1)) {
+				return nextNum;
 			}
-			eulerPhi.add(phi);
-			if 	(phi * d < r * (nextNum - 1)) return nextNum;
 		}
 		return 0;
 	}

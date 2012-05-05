@@ -2,9 +2,17 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
-import java.util.ArrayList;
 
 public class PrimeNumbers {
+	private boolean[] sieve;
+	private int sieveSize;
+	private int currentPos;
+	
+	public PrimeNumbers() {
+		sieve = new boolean[]{false, false, true};
+		sieveSize = 3;
+		currentPos = 2;
+	}
 
 	public static Boolean isPrime (int n) {
 		for (int i = 2; i < n; i ++) {
@@ -15,13 +23,12 @@ public class PrimeNumbers {
 		return true;
 	}
 	
-	public static void writePrimes(int maxNumber, String fileName) {
+	public void writePrimes(String fileName) {
 		try{
 			BufferedWriter fout = new BufferedWriter(new FileWriter(fileName));
-			ArrayList<Integer> primes = new ArrayList<Integer>(maxNumber);
-			generatePrimes(primes, maxNumber);
-			for (int i = 0; i < primes.size(); i ++) {
-				fout.write(String.valueOf(primes.get(i)));
+			goToFirstPrime();
+			for (int k = getNextPrime(); k != 0; k = getNextPrime()) {
+				fout.write(String.valueOf(k));
 				fout.write(System.getProperty("line.separator"));
 			}
 			fout.close();
@@ -31,16 +38,52 @@ public class PrimeNumbers {
 		}
 	}
 	
-	public static void generatePrimes(ArrayList<Integer> primes, int maxNumber) {
-		primes.clear();
-		Boolean[] seed = new Boolean[1];
+	public void generatePrimes(int maxNumber) {
+		sieve = new boolean[maxNumber];
+		sieveSize = maxNumber;
+		for (int i = 0; i < maxNumber; i ++) {
+			sieve[i] = true;
+		}		
+		for (int i = 2; i < maxNumber; i ++) {
+			if (sieve[i]) {
+				for (int j = 2 * i; j < maxNumber; j += i) {
+					sieve[j] = false;
+				}
+			}
+		}
+		currentPos = 2;
 	}
 	
-	public static void loadPrimes(ArrayList<Integer> primes, int maxNum, String fileName) {
+	public void goToFirstPrime() {
+		currentPos = 2;
+	}
+	
+	public int getNextPrime() {
+		for (int i = currentPos; i < sieveSize; i ++) {
+			if (sieve[i]) {
+				currentPos = i + 1;
+				return i;
+			}
+		}
+		return 0;
+	}
+	
+	public void loadPrimes(int maxNumber, String fileName) {
 		try{
 			BufferedReader fin = new BufferedReader(new FileReader(fileName));
-			for (int i = 0; i < maxNum; i ++) {
-				primes.add(Integer.valueOf(fin.readLine()));
+			sieve = new boolean[maxNumber];
+			sieveSize = maxNumber;
+			for (int i = 0; i < maxNumber; i ++) {
+				sieve[i] = false;
+			}
+			String line = "";
+			int prime = 2;
+			for (; line != null && prime < maxNumber;) {
+				line = fin.readLine();
+				if (line != null) {
+					prime = Integer.valueOf(line);
+					sieve[prime] = true;
+				}
 			}
 			fin.close();
 		}catch (Exception e){

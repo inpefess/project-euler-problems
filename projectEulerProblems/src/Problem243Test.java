@@ -9,7 +9,7 @@ public class Problem243Test {
 		/* Table from Wikipedia */
 		int[] testPhi = {1, 2, 2, 4, 2, 6, 4, 6,
 				4, 10, 4, 12, 6, 8, 8, 16, 6, 18,
-				8, 12, 10, 22, 8, 20, 12, 18, 12, 28, 
+				8, 12, 10, 20, 8, 20, 12, 18, 12, 28, 
 				8, 30, 16, 20, 16, 24, 12, 36, 18, 24, 
 				16, 40, 12, 42, 20, 24, 22, 46, 16, 42, 
 				20, 32, 24, 52, 18, 40, 24, 36, 28, 58, 
@@ -18,13 +18,13 @@ public class Problem243Test {
 				32, 54, 40, 82, 24, 64, 42, 56, 40, 88, 
 				24, 72, 44, 60, 46, 72, 32, 96, 42, 60};
 
-		Problem243.maxNum = 100;
-		Problem243.solve();
+		Problem243.primes = new PrimeNumbers();
+		Problem243.primes.generatePrimes(100);
 		for (int i = 0; i < 98; i ++) {
-			if (Problem243.eulerPhi.get(i) != testPhi[i]) {
+			if (Problem243.totientFunction(i + 2) != testPhi[i]) {
 				fail(String.valueOf(i));
 			}
 		}
-	}
-
+		if (Problem243.solve(100, 4, 10) != 12) fail("Example solution failed");
+	}	
 }
