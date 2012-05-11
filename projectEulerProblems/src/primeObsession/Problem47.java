@@ -1,3 +1,4 @@
+package primeObsession;
 import java.util.ArrayList;
 
 public class Problem47 {
