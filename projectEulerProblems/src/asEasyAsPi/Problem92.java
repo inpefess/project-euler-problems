@@ -1,3 +1,4 @@
+package asEasyAsPi;
 
 public class Problem92 {
 	private static int digitSquareSum(int j) {

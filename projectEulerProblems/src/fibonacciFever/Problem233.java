@@ -1,3 +1,4 @@
+package fibonacciFever;
 public class Problem233 {
 	public static long f_ (long N) {
 		long M = 3 * N / 2;

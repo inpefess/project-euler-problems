@@ -1,3 +1,4 @@
+package unluckySquares;
 public class Problem100 {
 	public static long solve (long n) {
 		for (long total = n; ; total ++) {

@@ -1,3 +1,6 @@
+package trinaryTriumph;
+import general.PrimeNumbers;
+
 public class Problem243 {
 	public static PrimeNumbers primes;
 	

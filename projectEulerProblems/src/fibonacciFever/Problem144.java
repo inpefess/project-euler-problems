@@ -1,3 +1,4 @@
+package fibonacciFever;
 public class Problem144 {
 	public static int solve () {
 		int count = 0;

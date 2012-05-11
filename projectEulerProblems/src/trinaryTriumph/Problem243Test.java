@@ -1,4 +1,6 @@
+package trinaryTriumph;
 import static org.junit.Assert.*;
+import general.PrimeNumbers;
 
 import org.junit.Test;
 

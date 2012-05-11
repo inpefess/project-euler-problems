@@ -1,3 +1,5 @@
+package asEasyAsPi;
+import general.PrimeNumbers;
 
 public class Problem46 {
 	public static int solve () {
