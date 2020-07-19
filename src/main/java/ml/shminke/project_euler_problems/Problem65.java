@@ -1,4 +1,4 @@
-package asEasyAsPi;
+package ml.shminke.project_euler_problems;
 import java.math.BigInteger;
 
 public class Problem65 {

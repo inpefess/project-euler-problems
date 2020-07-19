@@ -1,14 +1,12 @@
-package fibonacciFever;
-import static org.junit.Assert.*;
+package ml.shminke.project_euler_problems;
 
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import org.junit.jupiter.api.Test;
 
 public class Problem233Test {
-
 	@Test
 	public void test() {
-		if (Problem233.f(10000) != 36) fail("Epic fail");
+		assertEquals(Problem233.f(10000), 36);
 	}
-
 }

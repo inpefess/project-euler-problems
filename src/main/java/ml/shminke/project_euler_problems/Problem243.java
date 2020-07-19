@@ -1,5 +1,5 @@
-package trinaryTriumph;
-import general.PrimeNumbers;
+package ml.shminke.project_euler_problems;
+import ml.shminke.project_euler_problems.PrimeNumbers;
 
 public class Problem243 {
 	public static PrimeNumbers primes;

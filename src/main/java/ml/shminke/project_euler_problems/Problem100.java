@@ -1,4 +1,4 @@
-package unluckySquares;
+package ml.shminke.project_euler_problems;
 public class Problem100 {
 	public static long solve (long n) {
 		for (long total = n; ; total ++) {

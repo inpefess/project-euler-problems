@@ -1,11 +1,7 @@
-package asEasyAsPi;
-import static org.junit.Assert.*;
-
+package ml.shminke.project_euler_problems;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Test;
 import java.math.BigInteger;
-
-import org.junit.Test;
-
-
 
 public class Problem65Test {
 
@@ -17,12 +13,8 @@ public class Problem65Test {
 			BigInteger[] x = Problem65.getCont(i + 1);
 			Double a = Double.valueOf(String.valueOf(x[0]));
 			Double b = Double.valueOf(String.valueOf(x[1]));
-			if (a / b != testCont[i]) {
-				fail(String.valueOf(i));
-			}
+			assertEquals(a / b, testCont[i]);
 		}
-		if (Problem65.solve(9) != 17) {
-			fail("Example failed");
-		}
+		assertEquals(Problem65.solve(9), 17);
 	}
 }
