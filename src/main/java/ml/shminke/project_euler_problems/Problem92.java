@@ -1,4 +1,4 @@
-package asEasyAsPi;
+package ml.shminke.project_euler_problems;
 
 public class Problem92 {
 	private static int digitSquareSum(int j) {

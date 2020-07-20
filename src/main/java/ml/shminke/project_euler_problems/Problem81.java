@@ -1,4 +1,4 @@
-package trinaryTriumph;
+package ml.shminke.project_euler_problems;
 import java.io.BufferedReader;
 import java.io.FileReader;
 

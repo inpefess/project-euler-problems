@@ -1,4 +1,5 @@
-package fibonacciFever;
+package ml.shminke.project_euler_problems;
+
 public class Problem144 {
 	public static int solve () {
 		int count = 0;

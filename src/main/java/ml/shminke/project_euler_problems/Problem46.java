@@ -1,5 +1,5 @@
-package asEasyAsPi;
-import general.PrimeNumbers;
+package ml.shminke.project_euler_problems;
+import ml.shminke.project_euler_problems.PrimeNumbers;
 
 public class Problem46 {
 	public static int solve () {

@@ -1,4 +1,4 @@
-package primeObsession;
+package ml.shminke.project_euler_problems;
 import java.util.ArrayList;
 
 public class Problem47 {
