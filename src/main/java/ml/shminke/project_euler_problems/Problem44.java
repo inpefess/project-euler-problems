@@ -1,3 +1,4 @@
+package ml.shminke.project_euler_problems;
 
 public class Problem44 {
 	public static int getPentagonal(int n) {
