@@ -25,7 +25,7 @@ public class Problem243 {
 		primes = new PrimeNumbers();
 		primes.generatePrimes(maxNumber);
 		int percent = 0;
-		for (int nextNum = 6330000; nextNum < maxNumber; nextNum ++) {
+		for (int nextNum = 0; nextNum < maxNumber; nextNum ++) {
 			if (((long) nextNum * 1000) / maxNumber > percent) {
 				percent ++;
 				System.out.println(nextNum);
